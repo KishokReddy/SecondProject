@@ -1,0 +1,27 @@
+<html>
+<head>
+<style>
+body  {
+   background-image: url("images/f1.jpg");
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-size: 1400px 700px;
+}
+</style>
+</head>
+<body>
+
+<div ng-controller="ForumController">
+
+Forum Name<input type="text" ng-model="forum.forumName"/>
+
+<br/><br/>
+
+Forum Content<textarea ng-model="forum.forumContent"></textarea>
+
+<br/><br/>
+
+<button ng-click="addForum()">Add Forum</button>
+</div>
+</body>
+</html>

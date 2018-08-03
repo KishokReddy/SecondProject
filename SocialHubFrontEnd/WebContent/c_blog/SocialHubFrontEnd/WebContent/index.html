@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="RouteConfig.js"></script>
+<script src="c_user/UserController.js"></script>
+<script src="c_blog/BlogController.js"></script>
+<script src="c_forum/ForumController.js"></script>
+<script src="c_friend/FriendController.js"></script>
+<script src="c_chat/ChatController.js"></script>
+<script src="c_chat/ChatService.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.3/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.js"></script>
+<script>
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $("p").hide();
+    });
+    $("#show").click(function(){
+        $("p").show();
+    });
+});
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $("p1").hide();
+    });
+    $("#show").click(function(){
+        $("p1").show();
+    });
+});
+</script>
+<style>
+body  {
+   background-image: url("images/img1.jpg");
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-size: 1400px 700px;
+}
+
+</style>
+</head>
+<body ng-app="MyModule">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+   
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li ng-show="currentUser==undefined"><a href="#/login">Login</a></li>
+      <li ng-show="currentUser==undefined"><a href="#/register">Register</a></li>
+      <li ng-hide="currentUser==undefined"><a href="#/profilePic">Profile Update</a>
+      <li><a href="#/contactus">Contact Us</a></li>
+      
+      
+      <li ng-hide="currentUser==undefined" class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<span class="Caret"></span></a>
+      <ul class="dropdown-menu">
+      <li ng-hide="currentUser.role=='ROLE_ADMIN'"><a href="#/addBlog">Add Blog</a></li>
+      <li ng-hide="currentUser.role=='ROLE_ADMIN'"><a href="#/showBlog">Show Blog</a></li>
+      <li ng-show="currentUser.role=='ROLE_ADMIN'"><a href="#/adminBlog">Manage Blog</a></li>
+    </ul>
+    </li>
+    <li ng-hide="currentUser==undefined" class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forum<span class="Caret"></span></a>
+      <ul class="dropdown-menu">
+      <li ng-hide="currentUser.role=='ROLE_ADMIN'"><a href="#/addForum">Add Forum</a></li>
+      <li ng-hide="currentUser.role=='ROLE_ADMIN'"><a href="#/showForum">Show Forum</a></li>
+      <li ng-show="currentUser.role=='ROLE_ADMIN'"><a href="#/adminForum">Manage Forum</a></li>
+    </ul>
+    </li>
+    <li ng-hide="currentUser==undefined||currentUser.role=='ROLE_ADMIN'" class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Friend<span class="Caret"></span></a>
+      <ul class="dropdown-menu">
+      <li ng-hide="currentUser.role=='ROLE_ADMIN'"><a href="#/showFriendList">Show Friend List</a></li>
+      <li ng-hide="currentUser.role=='ROLE_ADMIN'"><a href="#/showPendingFriendRequestList">Show Pending Friend Requests</a></li>
+      <li ng-hide="currentUser.role=='ROLE_ADMIN'"><a href="#/showSuggestedFriendList">Suggested Friend List</a></li>
+    </ul>
+    </li>
+    <li ng-hide="currentUser.role=='ROLE_ADMIN'||currentUser==undefined"><a  href="#/chat">Chat</a></li>
+    
+    </ul>
+    <div   class="nav navbar-nav navbar-right w3-right" ng-hide="currentUser==undefined">
+    
+    <img src="http://localhost:8081/SocialHubMiddleware/getImage/{{currentUser.loginname}}" style="width:80px;height:50px;padding:0;margin:0;border-radius:50%;" alt="user profile picture">
+    <font color="white" face="calibri" size="2">Welcome {{currentUser.username}}</font>
+    <a href="#/login">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+<div ng-view></div>
+</div>
+<!-- ng-hide="currentUser.role=='ROLE_ADMIN'" -->
+</body>
+</html>

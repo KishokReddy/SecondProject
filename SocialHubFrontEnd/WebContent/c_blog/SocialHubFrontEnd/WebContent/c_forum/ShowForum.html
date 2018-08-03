@@ -1,0 +1,24 @@
+<html>
+<head>
+<style>
+body  {
+   background-image: url("images/f2.jpg");
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-size: 1400px 700px;
+}
+</style>
+</head>
+<body>
+
+<div class="container" ng-controller="ForumController">
+<div ng-repeat="forum in forumData">
+<button ng-show="forum.status=='A'" data-target="#{{forum.forumId}}" class="btn btn-info" data-toggle="collapse">{{forum.forumName}}</button>
+<button ng-show="forum.status=='A' && currentUser!=undefined" class="btn btn-info" ng-click="forumComment(forum)">Forum Comment</button>
+	<div ng-show="forum.status=='A'" id="{{forum.forumId}}" class="collapse">
+	{{forum.forumContent}}
+	</div>
+</div>
+</div>
+</body>
+</html>
