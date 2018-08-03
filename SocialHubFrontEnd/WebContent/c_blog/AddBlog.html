@@ -1,0 +1,31 @@
+<html>
+<head>
+<style>
+body  {
+   background-image: url("images/img2.jpg");
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-size: 1400px 700px;
+}
+</style>
+</head>
+<body>
+
+<div ng-controller="BlogController">
+
+<br>
+<br>
+<br>
+Blog Name<input type="text" ng-model="blog.blogName"/>
+
+<br/><br/>
+
+Blog Content<textarea ng-model="blog.blogContent"></textarea>
+
+<br/><br/>
+
+<button ng-click="addBlog()">Add Blog</button>
+</div>
+
+</body>
+</html>

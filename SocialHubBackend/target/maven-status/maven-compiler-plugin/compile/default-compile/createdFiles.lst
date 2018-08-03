@@ -1,0 +1,5 @@
+com\kanchan\config\DBConfig.class
+com\kanchan\dao\BlogDAOImpl.class
+com\kanchan\dao\BlogDAO.class
+com\kanchan\SocialHubBackend\App.class
+com\kanchan\model\Blog.class
